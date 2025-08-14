@@ -16,7 +16,7 @@ vmax=1
 dc=1
 nn=10
 fs=5000
-
+#ejemplo de clase: se quiere ver la señal  en 1s 
 #para ver tantas muestras en un periodo, hay que hacer "periodo/muestras=periodo de muestro"
 
 tiempo , espacio = funcion_sen(vmax,dc,ff,ph,nn,fs)
