@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 def funcion_sen(vmax,dc,ff,ph,nn,fs):
     
-    t=np.arange(0,(nn+1)/fs,1/fs)
+    t=np.arange(0,(nn)/fs,1/fs)
     
     y=vmax*np.sin(ff*2*np.pi*t-ph)+dc
     
