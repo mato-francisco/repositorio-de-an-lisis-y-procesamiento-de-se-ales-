@@ -36,7 +36,7 @@ plt.draw()
 
 plt.figure(2)
 
-ff=500
+ff=500 
 ph=0
 vmax=1
 dc=0
