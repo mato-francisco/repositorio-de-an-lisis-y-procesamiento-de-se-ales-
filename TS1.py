@@ -116,7 +116,7 @@ plt.xlabel('Eje X')
 plt.ylabel('Eje Y')
 plt.axis([0,1/10,-1,2]) 
 plt.draw()
-#Verificar ortogonalidad entre la primera señal y las demás-------------------
+#Verificar ortogonalidad entre la primera señal y las demás--------------------
 ortogonalida_1_2=np.inner(espacio_a,espacio_b)
 print(ortogonalida_1_2)
 
