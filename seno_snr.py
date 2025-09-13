@@ -18,7 +18,7 @@ fs=nn
 deltaf=fs/nn
 x , y=funcion_sen(ff=1,nn=nn,fs=fs,dev_estandar=np.sqrt(2))
 plt.figure(1)
-plt.plot(x,(y),linestyle='',marker='.' ,color='b')
+plt.plot(x,(y),linestyle='-',marker='.' ,color='b')
 plt.grid(True, linestyle=':') 
 plt.xlabel('eje de n muestras discretas)')
 plt.ylabel('eje de h[n]')
