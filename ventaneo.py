@@ -3,10 +3,10 @@ from scipy import signal
 from scipy.fft import fft, fftshift
 import matplotlib.pyplot as plt
 
-
-hamming = signal.windows.hamming(51)
-blackmanharris = signal.windows.blackmanharris(51)
-flattop = signal.windows.flattop(51)
+N=1000
+hamming = signal.windows.hamming(N)
+blackmanharris = signal.windows.blackmanharris(N)
+flattop = signal.windows.flattop(N)
 # plt.figure(1)
 # plt.plot(hamming)
 # plt.plot(blackmanharris)
@@ -35,13 +35,11 @@ freq = np.linspace(-0.5, 0.5, len(fft_flattop))
 response_flattop = 20 * np.log10(np.abs(fftshift(fft_flattop / abs(fft_flattop).max())))
 
 
-
-
-
 plt.plot(freq, response_hamming, label="hamming",linestyle='-',marker='' ,color='b')
 plt.plot(freq, response_blackmanharris, label="blackmanharris",linestyle='-',marker='' ,color='r')
-plt.plot(freq, response_flattop, label="blackmanharris",linestyle='-',marker='' ,color='g')
+plt.plot(freq, response_flattop, label="flattop",linestyle='-',marker='' ,color='g')
 plt.legend()
 plt.axis([-0.5, 0.5, -120, 0])
 plt.ylabel("db normalizada")
 plt.xlabel("frecuencia normalizada")
+

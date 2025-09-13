@@ -1,23 +1,25 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.fft import fft
-def funcion_sen(ff,nn,vmax=1,dc=0,ph=0,fs=2):#todas las variables que estan igualadas a un valor seran las 
+def funcion_sen(ff,nn,vmax=1,dc=0,ph=0,fs=2,dev_estandar=1):#todas las variables que estan igualadas a un valor seran las 
                                              #opcionale y si nos las pongo cuando llamo la funcion toma esos 
                                              #valore. fs = 2 para que cumpla nyquis 
     
     t=np.arange(0,(nn)/fs,1/fs)
-   
-    y=vmax*np.sin(ff*2*np.pi*t-ph)+dc
-    
-    return  y 
+    if(dev_estandar==1):
+        y=vmax*np.sin(ff*2*np.pi*t-ph)+dc
+    else:
+        y=vmax*np.sin(ff*2*np.pi*t-ph)+dc+np.random.normal(0,dev_estandar,size=nn)
+
+    return y
 
 N=100
 fs=N
 deltaf=fs/N
-
+ 
 zeross=np.zeros(9*N)
 
-y=funcion_sen(ff=10,nn=N,fs=N )
+y=funcion_sen(ff=10,nn=N,fs=N ,dev_estandar=np.sqrt(1))
 
 zero_pointing=np.concat((y,zeross),axis=0)
 
