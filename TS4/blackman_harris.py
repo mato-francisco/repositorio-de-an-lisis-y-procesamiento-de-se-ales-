@@ -10,6 +10,9 @@ a_0=np.sqrt(2)
 snr_db=10
 realizaciones=200
    
+blackmanharris = signal.windows.blackmanharris(N)
+blackmanharris= np.reshape(blackmanharris,(N,1))
+
 fr=np.random.uniform(-2,2,realizaciones)
 fr=np.reshape(fr,(1,realizaciones))
 fr=np.tile(fr, (N,1))
@@ -23,8 +26,9 @@ potencia_señal=((a_0)**2)/2
 dev_estandar=np.sqrt((potencia_señal)/(10**(snr_db/10)))
 
 
-ruido=np.random.normal(0,dev_estandar ,(N,realizaciones))
-
+ruido=np.random.normal(0,dev_estandar ,N)
+ruido=np.reshape(ruido,(N,1))
+ruido=np.tile(ruido, (1,realizaciones))
 
 t=np.arange(0,(N)/fs,1/fs)
 t=np.reshape(t,(N,1))
@@ -38,11 +42,14 @@ x_1=s_1+ruido
 plt.figure(2)
 plt.clf
 
-ffx_1=(1/N)*np.fft.fft(x_1,n=10*N,axis=0)
+ffx_1=(1/N)*np.fft.fft(x_1*blackmanharris,axis=0)
 absffx_1=np.abs(ffx_1)
 ff=np.arange(N)*(fs/(N))
 
-plt.plot(np.arange(10*N)*(fs/(10*N)),10*np.log10(2*(np.abs(ffx_1)**2)),linestyle='-',marker='.' )
+estimador=10*np.log10(2*(np.abs(ffx_1[250,:])**2))
+#hacer HISTOGRAMA usar 20 bins 
+
+plt.plot(np.arange(N)*(fs/(N)),10*np.log10(2*(np.abs(ffx_1)**2)),linestyle='-',marker='.' )
 
 plt.grid(True, linestyle=':') 
 plt.xlabel('frecuencia (HZ)')
@@ -53,8 +60,4 @@ plt.draw()
 plt.tight_layout() 
 
 plt.show()
-
-
-
-
 
