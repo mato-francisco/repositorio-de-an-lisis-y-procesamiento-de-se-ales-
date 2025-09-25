@@ -21,7 +21,9 @@ blackmanharris= np.reshape(blackmanharris,(N,1))
 
 
 
-fr=np.random.uniform(-2,2,(N,realizaciones))
+fr=np.random.uniform(-2,2,(realizaciones))
+fr=np.reshape(fr,(1,realizaciones))
+fr=np.tile(fr, (N,1))
 
 
 
@@ -84,17 +86,30 @@ bins=20
 
 
 plt.clf
-plt.figure(2)
-
+plt.figure(1)
+plt.subplot(2,2,1)
 plt.hist(estimador_1,bins,alpha=claridad,label="rectangular")
 plt.legend()
-
+plt.subplot(2,2,2)
 plt.hist(estimador_2,bins,alpha=claridad,label="hamming")
 plt.legend()
-
+plt.subplot(2,2,3)
 plt.hist(estimador_3,bins,alpha=claridad,label="flattop")
 plt.legend()
-
+plt.subplot(2,2,4)
 plt.hist(estimador_4,bins,alpha=claridad,label="blackmanharris")
 plt.legend()
 plt.show()
+
+print('               | media            |varianza              |')
+print("rectangular    |",media_rectangular,"  |",var_rectangular," |",)
+print("hamming        |",media_hamming,"  |",var_hamming," |",)
+print("flattop        |",media_flatop,"  |",var_flatop,"|",)
+print("blackman harris|",media_bcharrix," |",var_bcharris,"|",)
+
+plt.figure(2)
+plt.plot(np.abs(ffx_1[0:5000,0]),label="rec")
+plt.plot(np.abs(ffx_2[0:5000,0]),label="hamming")
+plt.plot(np.abs(ffx_3[0:5000,0]),label="flatop")
+plt.plot(np.abs(ffx_4[0:5000,0]),label="bcharris")
+plt.legend()

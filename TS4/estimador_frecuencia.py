@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 N=1000
 fs=N
 deltaf=fs/N
-a_0=np.sqrt(2)
+a_0=2
 snr_db=3
 realizaciones=200
    
@@ -19,10 +19,12 @@ flatop= np.reshape(flatop,(N,1))
 blackmanharris = signal.windows.blackmanharris(N)
 blackmanharris= np.reshape(blackmanharris,(N,1))
 
-
-
 fr=np.random.uniform(-2,2,(N,realizaciones))
 
+
+# fr=np.random.uniform(-2,2,(realizaciones))
+# fr=np.reshape(fr,(1,realizaciones))
+# fr=np.tile(fr, (N,1))
 
 
 omega_0=fs/4 
@@ -67,30 +69,22 @@ ff=np.arange(N)*(fs/(N))
 estimador_1=np.argmax(np.abs(ffx_1[0:500:]),axis=0)
 var_rectangular=np.var(estimador_1)
 media_rectangular=np.mean(estimador_1)
-print("rectangular varianza y media")
-print(var_rectangular)
-print(media_rectangular)
+
 
 estimador_2=np.argmax(np.abs(ffx_2[0:500,:]),axis=0)
 var_hamming=np.var(estimador_2)
 media_hamming=np.mean(estimador_2)
-print("hamming varianza y media")
-print(var_hamming)
-print(media_hamming)
+
 
 estimador_3=np.argmax(np.abs(ffx_3[0:500,:]),axis=0)
 var_flatop=np.var(estimador_3)
 media_flatop=np.mean(estimador_3)
-print("flatop varianza y media")
-print(var_flatop)
-print(media_flatop)
+
 
 estimador_4=np.argmax(np.abs(ffx_4[0:500,:]),axis=0)
 var_bcharris=np.var(estimador_4)
 media_bcharrix=np.mean(estimador_4)
-print("blackman harris varianza y media")
-print(var_bcharris)
-print(media_bcharrix)
+
 
 claridad=0.4
 bins=20
@@ -100,17 +94,22 @@ aux2=np.abs(ffx_4[0:500,:])
 
 plt.clf
 plt.figure(1)
-
+plt.subplot(2,2,1)
 plt.hist(estimador_1,bins,alpha=claridad,label="rectangular")
 plt.legend()
-
+plt.subplot(2,2,2)
 plt.hist(estimador_2,bins,alpha=claridad,label="hamming")
 plt.legend()
-
+plt.subplot(2,2,3)
 plt.hist(estimador_3,bins,alpha=claridad,label="flattop")
 plt.legend()
-
+plt.subplot(2,2,4)
 plt.hist(estimador_4,bins,alpha=claridad,label="blackmanharris")
 plt.legend()
 plt.show()
 
+print('               | media            |varianza              |')
+print("rectangular    |",media_rectangular,"  |",var_rectangular," |",)
+print("hamming        |",media_hamming,"  |",var_hamming," |",)
+print("flattop        |",media_flatop,"  |",var_flatop,"|",)
+print("blackman harris|",media_bcharrix," |",var_bcharris,"|",)
