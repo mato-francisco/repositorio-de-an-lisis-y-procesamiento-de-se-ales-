@@ -19,12 +19,12 @@ flatop= np.reshape(flatop,(N,1))
 blackmanharris = signal.windows.blackmanharris(N)
 blackmanharris= np.reshape(blackmanharris,(N,1))
 
-fr=np.random.uniform(-2,2,(N,realizaciones))
+#fr=np.random.uniform(-2,2,(N,realizaciones))
 
 
-# fr=np.random.uniform(-2,2,(realizaciones))
-# fr=np.reshape(fr,(1,realizaciones))
-# fr=np.tile(fr, (N,1))
+fr=np.random.uniform(-2,2,(realizaciones))
+fr=np.reshape(fr,(1,realizaciones))
+fr=np.tile(fr, (N,1))
 
 
 omega_0=fs/4 
@@ -54,15 +54,15 @@ absffx_1=np.abs(ffx_1)
 ff=np.arange(N)*(fs/(N))
 
 ffx_2=(1/(N))*np.fft.fft(x_1*hamming,n=N,axis=0)
-absffx_1=np.abs(ffx_1)
+absffx_2=np.abs(ffx_2)
 ff=np.arange(N)*(fs/(N))
 
 ffx_3=(1/(N))*np.fft.fft(x_1*flatop,n=N,axis=0)
-absffx_1=np.abs(ffx_1)
+absffx_3=np.abs(ffx_3)
 ff=np.arange(N)*(fs/(N))
 
 ffx_4=(1/(N))*np.fft.fft(x_1*blackmanharris,n=N,axis=0)
-absffx_1=np.abs(ffx_1)
+absffx_4=np.abs(ffx_4)
 ff=np.arange(N)*(fs/(N))
 
 
