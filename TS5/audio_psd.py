@@ -51,8 +51,8 @@ area=np.cumsum(dsp_perio)
 bb_max=np.where((area/np.max(area))>0.99)
 bw_max_perio=f_perio[bb_max[0][0]]
 
-bb_min=np.where(dsp_perio>dsp_perio[bb_max[0][0]])
-bw_min_perio=f_perio[bb_min[0][0]]
+bb_min=np.where(dsp_perio>=dsp_perio[bb_max[0][0]])
+bw_min_perio=f_perio[bb_min[0][3]]
 
 
 plt.figure(3)
